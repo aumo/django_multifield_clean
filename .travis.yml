@@ -1,0 +1,17 @@
+language: python
+install:
+  - pip install -r test-requirements.txt
+script:
+  - coverage erase
+  - tox
+after_success:
+  - coveralls
+env:
+  - TOXENV=py27-1.7.X
+  - TOXENV=py32-1.7.X
+  - TOXENV=py33-1.7.X
+  - TOXENV=py34-1.7.X
+  - TOXENV=py27-1.8.X
+  - TOXENV=py32-1.8.X
+  - TOXENV=py33-1.8.X
+  - TOXENV=py34-1.8.X

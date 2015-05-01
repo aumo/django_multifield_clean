@@ -1,0 +1,11 @@
+/.coverage
+/htmlcov/
+/.tox/
+
+/build/
+/dist/
+*.egg-info/
+
+
+__pycache__/
+*.py[cdo]
