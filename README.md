@@ -2,6 +2,10 @@
 
 <https://github.com/aumo/django_multifield_clean>
 
+[![Build Status](https://travis-ci.org/aumo/django_multifield_clean.svg?branch=master)](https://travis-ci.org/aumo/django_multifield_clean)
+[![Coverage Status](https://coveralls.io/repos/aumo/django_multifield_clean/badge.svg?branch=master)](https://coveralls.io/r/aumo/django_multifield_clean?branch=master)
+
+
 Provides a Django form mixin that allows declaring validation methods 
 (similar to the Django `Form.clean_<field_name>()` methods) working on multiple 
 fields, allowing less boilerplate code in `Form.clean()`.
