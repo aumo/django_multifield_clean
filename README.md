@@ -27,29 +27,28 @@ If an argument has no default value, the validation method is called only if the
 
 Example:
 
+```python
+from django import forms
+from django.core.exceptions import Validationerror
 
-    from django import forms
-    from django.core.exceptions import Validationerror
-
-    from multifieldclean.forms import MultiFieldCleanFormMixin
+from multifieldclean.forms import MultiFieldCleanFormMixin
     
     
-    # The mixin must be placed before 'forms.Form'
-    # so it can override its methods.
-    class HolidaysForm(MultiFieldCleanFormMixin, forms.Form):
-        start = forms.IntegerField()
-        end = forms.IntegerField()
+# The mixin must be placed before 'forms.Form'
+# so it can override its methods.
+class HolidaysForm(MultiFieldCleanFormMixin, forms.Form):
+    start = forms.IntegerField()
+    end = forms.IntegerField()
         
-        # Any method starting with "multiclean" will be
-        # interpreted as a multi field validation method.
-        # The method will only be called only if 'start' and
-        # 'end' have values.
-        def multiclean_holidays_end_after_they_start(self, start, end):
-           if start > end:
-               self.add_error('end', 
-                              ValidationError('These holidays end before they even start!'))
-                              
-         
+    # Any method starting with "multiclean" will be
+    # interpreted as a multi field validation method.
+    # The method will only be called only if 'start' and
+    # 'end' have values.
+    def multiclean_holidays_end_after_they_start(self, start, end):
+       if start > end:
+           self.add_error('end', 
+                          ValidationError('These holidays end before they even start!'))
+```
  
 
  
@@ -63,13 +62,15 @@ Example:
 
 I often found myself writing a lot of boilerplate code when overriding the `Form.clean()` method, for example:
 
-    def clean(self):
-        start = self.cleaned_data.get('start')
-        end = self.cleaned_data.get('end')
-        if start and end:
-            if start > end:
-                # etc...
-                
+```python
+def clean(self):
+    start = self.cleaned_data.get('start')
+    end = self.cleaned_data.get('end')
+    if start and end:
+        if start > end:
+            # etc...
+```
+
 It is boring to write and harder to read. This package tries to provide a solution to this issue.
 
 
